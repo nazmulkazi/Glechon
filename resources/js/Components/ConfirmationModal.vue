@@ -30,11 +30,11 @@ const close = () => {
         :closeable="closeable"
         @close="close"
     >
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="sm:flex sm:items-start">
-                <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+        <div class="tw-bg-white tw-px-4 tw-pt-5 tw-pb-4 sm:tw-p-6 sm:tw-pb-4">
+            <div class="sm:tw-flex sm:tw-items-start">
+                <div class="tw-mx-auto shrink-0 tw-flex tw-items-center tw-justify-center tw-h-12 tw-w-12 tw-rounded-full tw-bg-red-100 sm:tw-mx-0 sm:tw-h-10 sm:tw-w-10">
                     <svg
-                        class="h-6 w-6 text-red-600"
+                        class="tw-h-6 tw-w-6 tw-text-red-600"
                         stroke="currentColor"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -48,19 +48,19 @@ const close = () => {
                     </svg>
                 </div>
 
-                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3 class="text-lg">
+                <div class="tw-mt-3 tw-text-center sm:tw-mt-0 sm:tw-ml-4 sm:tw-text-left">
+                    <h3 class="tw-text-lg">
                         <slot name="title" />
                     </h3>
 
-                    <div class="mt-2">
+                    <div class="tw-mt-2">
                         <slot name="content" />
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-row justify-end px-6 py-4 bg-gray-100 text-right">
+        <div class="tw-flex tw-flex-row tw-justify-end tw-px-6 tw-py-4 tw-bg-gray-100 tw-text-right">
             <slot name="footer" />
         </div>
     </Modal>

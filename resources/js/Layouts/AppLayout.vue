@@ -34,38 +34,38 @@ const logout = () => {
 
         <Banner />
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="tw-min-h-screen tw-bg-gray-100">
+            <nav class="tw-bg-white tw-border-b tw-border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
+                <div class="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8">
+                    <div class="tw-flex tw-justify-between tw-h-16">
+                        <div class="tw-flex">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 tw-flex tw-items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationMark class="block h-9 w-auto" />
+                                    <ApplicationMark class="tw-block tw-h-9 tw-w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="tw-hidden tw-space-x-8 sm:tw--my-px sm:tw-ml-10 sm:tw-flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
                             </div>
                         </div>
 
-                        <div class="hidden sm:flex sm:items-center sm:ml-6">
-                            <div class="ml-3 relative">
+                        <div class="tw-hidden sm:tw-flex sm:tw-items-center sm:tw-ml-6">
+                            <div class="tw-ml-3 tw-relative">
                                 <!-- Teams Dropdown -->
                                 <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
                                     <template #trigger>
-                                        <span class="inline-flex rounded-md">
-                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                        <span class="tw-inline-flex tw-rounded-md">
+                                            <button type="button" class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-transparent tw-text-sm tw-leading-4 tw-font-medium tw-rounded-md tw-text-gray-500 tw-bg-white hover:tw-bg-gray-50 hover:tw-text-gray-700 focus:tw-outline-none focus:tw-bg-gray-50 active:tw-bg-gray-50 tw-transition">
                                                 {{ $page.props.user.current_team.name }}
 
                                                 <svg
-                                                    class="ml-2 -mr-0.5 h-4 w-4"
+                                                    class="tw-ml-2 tw--mr-0.5 tw-h-4 tw-w-4"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
@@ -77,10 +77,10 @@ const logout = () => {
                                     </template>
 
                                     <template #content>
-                                        <div class="w-60">
+                                        <div class="tw-w-60">
                                             <!-- Team Management -->
                                             <template v-if="$page.props.jetstream.hasTeamFeatures">
-                                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                                <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">
                                                     Manage Team
                                                 </div>
 
@@ -93,20 +93,20 @@ const logout = () => {
                                                     Create New Team
                                                 </DropdownLink>
 
-                                                <div class="border-t border-gray-100" />
+                                                <div class="tw-border-t tw-border-gray-100" />
 
                                                 <!-- Team Switcher -->
-                                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                                <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">
                                                     Switch Teams
                                                 </div>
 
                                                 <template v-for="team in $page.props.user.all_teams" :key="team.id">
                                                     <form @submit.prevent="switchToTeam(team)">
                                                         <DropdownLink as="button">
-                                                            <div class="flex items-center">
+                                                            <div class="tw-flex tw-items-center">
                                                                 <svg
                                                                     v-if="team.id == $page.props.user.current_team_id"
-                                                                    class="mr-2 h-5 w-5 text-green-400"
+                                                                    class="tw-mr-2 tw-h-5 tw-w-5 tw-text-green-400"
                                                                     fill="none"
                                                                     stroke-linecap="round"
                                                                     stroke-linejoin="round"
@@ -126,19 +126,19 @@ const logout = () => {
                             </div>
 
                             <!-- Settings Dropdown -->
-                            <div class="ml-3 relative">
+                            <div class="tw-ml-3 tw-relative">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
-                                        <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                            <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
+                                        <button v-if="$page.props.jetstream.managesProfilePhotos" class="tw-flex tw-text-sm tw-border-2 tw-border-transparent tw-rounded-full focus:tw-outline-none focus:tw-border-gray-300 tw-transition">
+                                            <img class="tw-h-8 tw-w-8 tw-rounded-full tw-object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
                                         </button>
 
-                                        <span v-else class="inline-flex rounded-md">
-                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                        <span v-else class="tw-inline-flex tw-rounded-md">
+                                            <button type="button" class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-transparent tw-text-sm tw-leading-4 tw-font-medium tw-rounded-md tw-text-gray-500 tw-bg-white hover:tw-text-gray-700 focus:tw-outline-none tw-transition">
                                                 {{ $page.props.user.name }}
 
                                                 <svg
-                                                    class="ml-2 -mr-0.5 h-4 w-4"
+                                                    class="tw-ml-2 tw--mr-0.5 tw-h-4 tw-w-4"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
@@ -151,7 +151,7 @@ const logout = () => {
 
                                     <template #content>
                                         <!-- Account Management -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                        <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">
                                             Manage Account
                                         </div>
 
@@ -163,7 +163,7 @@ const logout = () => {
                                             API Tokens
                                         </DropdownLink>
 
-                                        <div class="border-t border-gray-100" />
+                                        <div class="tw-border-t tw-border-gray-100" />
 
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">
@@ -177,23 +177,23 @@ const logout = () => {
                         </div>
 
                         <!-- Hamburger -->
-                        <div class="-mr-2 flex items-center sm:hidden">
-                            <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition" @click="showingNavigationDropdown = ! showingNavigationDropdown">
+                        <div class="tw--mr-2 tw-flex tw-items-center sm:tw-hidden">
+                            <button class="tw-inline-flex tw-items-center tw-justify-center tw-p-2 tw-rounded-md tw-text-gray-400 hover:tw-text-gray-500 hover:tw-bg-gray-100 focus:tw-outline-none focus:tw-bg-gray-100 focus:tw-text-gray-500 tw-transition" @click="showingNavigationDropdown = ! showingNavigationDropdown">
                                 <svg
-                                    class="h-6 w-6"
+                                    class="tw-h-6 tw-w-6"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                 >
                                     <path
-                                        :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }"
+                                        :class="{'tw-hidden': showingNavigationDropdown, 'tw-inline-flex': ! showingNavigationDropdown }"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         stroke-width="2"
                                         d="M4 6h16M4 12h16M4 18h16"
                                     />
                                     <path
-                                        :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }"
+                                        :class="{'tw-hidden': ! showingNavigationDropdown, 'tw-inline-flex': showingNavigationDropdown }"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         stroke-width="2"
@@ -206,31 +206,31 @@ const logout = () => {
                 </div>
 
                 <!-- Responsive Navigation Menu -->
-                <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
-                    <div class="pt-2 pb-3 space-y-1">
+                <div :class="{'tw-block': showingNavigationDropdown, 'tw-hidden': ! showingNavigationDropdown}" class="sm:tw-hidden">
+                    <div class="tw-pt-2 tw-pb-3 tw-space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="flex items-center px-4">
-                            <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 mr-3">
-                                <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
+                    <div class="tw-pt-4 tw-pb-1 tw-border-t tw-border-gray-200">
+                        <div class="tw-flex tw-items-center tw-px-4">
+                            <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 tw-mr-3">
+                                <img class="tw-h-10 tw-w-10 tw-rounded-full tw-object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
                             </div>
 
                             <div>
-                                <div class="font-medium text-base text-gray-800">
+                                <div class="tw-font-medium tw-text-base tw-text-gray-800">
                                     {{ $page.props.user.name }}
                                 </div>
-                                <div class="font-medium text-sm text-gray-500">
+                                <div class="tw-font-medium tw-text-sm tw-text-gray-500">
                                     {{ $page.props.user.email }}
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-3 space-y-1">
+                        <div class="tw-mt-3 tw-space-y-1">
                             <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
                                 Profile
                             </ResponsiveNavLink>
@@ -248,9 +248,9 @@ const logout = () => {
 
                             <!-- Team Management -->
                             <template v-if="$page.props.jetstream.hasTeamFeatures">
-                                <div class="border-t border-gray-200" />
+                                <div class="tw-border-t tw-border-gray-200" />
 
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">
                                     Manage Team
                                 </div>
 
@@ -263,20 +263,20 @@ const logout = () => {
                                     Create New Team
                                 </ResponsiveNavLink>
 
-                                <div class="border-t border-gray-200" />
+                                <div class="tw-border-t tw-border-gray-200" />
 
                                 <!-- Team Switcher -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <div class="tw-block tw-px-4 tw-py-2 tw-text-xs tw-text-gray-400">
                                     Switch Teams
                                 </div>
 
                                 <template v-for="team in $page.props.user.all_teams" :key="team.id">
                                     <form @submit.prevent="switchToTeam(team)">
                                         <ResponsiveNavLink as="button">
-                                            <div class="flex items-center">
+                                            <div class="tw-flex tw-items-center">
                                                 <svg
                                                     v-if="team.id == $page.props.user.current_team_id"
-                                                    class="mr-2 h-5 w-5 text-green-400"
+                                                    class="tw-mr-2 tw-h-5 tw-w-5 tw-text-green-400"
                                                     fill="none"
                                                     stroke-linecap="round"
                                                     stroke-linejoin="round"
@@ -296,8 +296,8 @@ const logout = () => {
             </nav>
 
             <!-- Page Heading -->
-            <header v-if="$slots.header" class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <header v-if="$slots.header" class="tw-bg-white tw-shadow">
+                <div class="tw-max-w-7xl tw-mx-auto tw-py-6 tw-px-4 sm:tw-px-6 lg:tw-px-8">
                     <slot name="header" />
                 </div>
             </header>

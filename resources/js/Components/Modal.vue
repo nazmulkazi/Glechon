@@ -20,7 +20,7 @@ const emit = defineEmits(['close']);
 
 watch(() => props.show, () => {
     if (props.show) {
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'tw-hidden';
     } else {
         document.body.style.overflow = null;
     }
@@ -47,41 +47,41 @@ onUnmounted(() => {
 
 const maxWidthClass = computed(() => {
     return {
-        'sm': 'sm:max-w-sm',
-        'md': 'sm:max-w-md',
-        'lg': 'sm:max-w-lg',
-        'xl': 'sm:max-w-xl',
-        '2xl': 'sm:max-w-2xl',
+        'sm': 'sm:tw-max-w-sm',
+        'md': 'sm:tw-max-w-md',
+        'lg': 'sm:tw-max-w-lg',
+        'xl': 'sm:tw-max-w-xl',
+        '2xl': 'sm:tw-max-w-2xl',
     }[props.maxWidth];
 });
 </script>
 
 <template>
     <teleport to="body">
-        <transition leave-active-class="duration-200">
-            <div v-show="show" class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50" scroll-region>
+        <transition leave-active-class="tw-duration-200">
+            <div v-show="show" class="tw-fixed tw-inset-0 tw-overflow-y-auto tw-px-4 tw-py-6 sm:tw-px-0 tw-z-50" scroll-region>
                 <transition
-                    enter-active-class="ease-out duration-300"
-                    enter-from-class="opacity-0"
-                    enter-to-class="opacity-100"
-                    leave-active-class="ease-in duration-200"
-                    leave-from-class="opacity-100"
-                    leave-to-class="opacity-0"
+                    enter-active-class="tw-ease-out tw-duration-300"
+                    enter-from-class="tw-opacity-0"
+                    enter-to-class="tw-opacity-100"
+                    leave-active-class="tw-ease-in tw-duration-200"
+                    leave-from-class="tw-opacity-100"
+                    leave-to-class="tw-opacity-0"
                 >
-                    <div v-show="show" class="fixed inset-0 transform transition-all" @click="close">
-                        <div class="absolute inset-0 bg-gray-500 opacity-75" />
+                    <div v-show="show" class="tw-fixed tw-inset-0 tw-transform tw-transition-all" @click="close">
+                        <div class="tw-absolute tw-inset-0 tw-bg-gray-500 tw-opacity-75" />
                     </div>
                 </transition>
 
                 <transition
-                    enter-active-class="ease-out duration-300"
-                    enter-from-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enter-to-class="opacity-100 translate-y-0 sm:scale-100"
-                    leave-active-class="ease-in duration-200"
-                    leave-from-class="opacity-100 translate-y-0 sm:scale-100"
-                    leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    enter-active-class="tw-ease-out tw-duration-300"
+                    enter-from-class="tw-opacity-0 tw-translate-y-4 sm:tw-translate-y-0 sm:tw-scale-95"
+                    enter-to-class="tw-opacity-100 tw-translate-y-0 sm:tw-scale-100"
+                    leave-active-class="tw-ease-in tw-duration-200"
+                    leave-from-class="tw-opacity-100 tw-translate-y-0 sm:tw-scale-100"
+                    leave-to-class="tw-opacity-0 tw-translate-y-4 sm:tw-translate-y-0 sm:tw-scale-95"
                 >
-                    <div v-show="show" class="mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto" :class="maxWidthClass">
+                    <div v-show="show" class="tw-mb-6 tw-bg-white tw-rounded-lg tw-overflow-hidden tw-shadow-xl tw-transform tw-transition-all sm:tw-w-full sm:tw-mx-auto" :class="maxWidthClass">
                         <slot v-if="show" />
                     </div>
                 </transition>

@@ -84,17 +84,17 @@ const closeModal = () => {
             <template #content>
                 {{ content }}
 
-                <div class="mt-4">
+                <div class="tw-mt-4">
                     <TextInput
                         ref="passwordInput"
                         v-model="form.password"
                         type="password"
-                        class="mt-1 block w-3/4"
+                        class="tw-mt-1 tw-block tw-w-3/4"
                         placeholder="Password"
                         @keyup.enter="confirmPassword"
                     />
 
-                    <InputError :message="form.error" class="mt-2" />
+                    <InputError :message="form.error" class="tw-mt-2" />
                 </div>
             </template>
 
@@ -104,8 +104,8 @@ const closeModal = () => {
                 </SecondaryButton>
 
                 <PrimaryButton
-                    class="ml-3"
-                    :class="{ 'opacity-25': form.processing }"
+                    class="tw-ml-3"
+                    :class="{ 'tw-opacity-25': form.processing }"
                     :disabled="form.processing"
                     @click="confirmPassword"
                 >

@@ -35,11 +35,11 @@ const deleteTeam = () => {
         </template>
 
         <template #content>
-            <div class="max-w-xl text-sm text-gray-600">
+            <div class="tw-max-w-xl tw-text-sm tw-text-gray-600">
                 Once a team is deleted, all of its resources and data will be permanently deleted. Before deleting this team, please download any data or information regarding this team that you wish to retain.
             </div>
 
-            <div class="mt-5">
+            <div class="tw-mt-5">
                 <DangerButton @click="confirmTeamDeletion">
                     Delete Team
                 </DangerButton>
@@ -61,8 +61,8 @@ const deleteTeam = () => {
                     </SecondaryButton>
 
                     <DangerButton
-                        class="ml-3"
-                        :class="{ 'opacity-25': form.processing }"
+                        class="tw-ml-3"
+                        :class="{ 'tw-opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="deleteTeam"
                     >

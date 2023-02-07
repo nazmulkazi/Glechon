@@ -48,11 +48,11 @@ const closeModal = () => {
         </template>
 
         <template #content>
-            <div class="max-w-xl text-sm text-gray-600">
+            <div class="tw-max-w-xl tw-text-sm tw-text-gray-600">
                 Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.
             </div>
 
-            <div class="mt-5">
+            <div class="tw-mt-5">
                 <DangerButton @click="confirmUserDeletion">
                     Delete Account
                 </DangerButton>
@@ -67,17 +67,17 @@ const closeModal = () => {
                 <template #content>
                     Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.
 
-                    <div class="mt-4">
+                    <div class="tw-mt-4">
                         <TextInput
                             ref="passwordInput"
                             v-model="form.password"
                             type="password"
-                            class="mt-1 block w-3/4"
+                            class="tw-mt-1 tw-block tw-w-3/4"
                             placeholder="Password"
                             @keyup.enter="deleteUser"
                         />
 
-                        <InputError :message="form.errors.password" class="mt-2" />
+                        <InputError :message="form.errors.password" class="tw-mt-2" />
                     </div>
                 </template>
 
@@ -87,8 +87,8 @@ const closeModal = () => {
                     </SecondaryButton>
 
                     <DangerButton
-                        class="ml-3"
-                        :class="{ 'opacity-25': form.processing }"
+                        class="tw-ml-3"
+                        :class="{ 'tw-opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="deleteUser"
                     >

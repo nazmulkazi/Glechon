@@ -26,24 +26,24 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
             <AuthenticationCardLogo />
         </template>
 
-        <div class="mb-4 text-sm text-gray-600">
+        <div class="tw-mb-4 tw-text-sm tw-text-gray-600">
             Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
         </div>
 
-        <div v-if="verificationLinkSent" class="mb-4 font-medium text-sm text-green-600">
+        <div v-if="verificationLinkSent" class="tw-mb-4 tw-font-medium tw-text-sm tw-text-green-600">
             A new verification link has been sent to the email address you provided in your profile settings.
         </div>
 
         <form @submit.prevent="submit">
-            <div class="mt-4 flex items-center justify-between">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <div class="tw-mt-4 tw-flex tw-items-center tw-justify-between">
+                <PrimaryButton :class="{ 'tw-opacity-25': form.processing }" :disabled="form.processing">
                     Resend Verification Email
                 </PrimaryButton>
 
                 <div>
                     <Link
                         :href="route('profile.show')"
-                        class="underline text-sm text-gray-600 hover:text-gray-900"
+                        class="tw-underline tw-text-sm tw-text-gray-600 hover:tw-text-gray-900"
                     >
                         Edit Profile</Link>
 
@@ -51,7 +51,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                         :href="route('logout')"
                         method="post"
                         as="button"
-                        class="underline text-sm text-gray-600 hover:text-gray-900 ml-2"
+                        class="tw-underline tw-text-sm tw-text-gray-600 hover:tw-text-gray-900 tw-ml-2"
                     >
                         Log Out
                     </Link>
