@@ -1,64 +1,32 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About Glechon
 
-## About Laravel
+Glechon is a web app developed to annotate and grade student responses from quizzes and exams to generate data for NLP research, such as automated grading and misconception detection.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Dashboard](https://oxiago.com/github/readme_images/Glechon/glechon-dashboard.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+We take advantage of the Laravel framework to develop the web app. We prioritized versatility in its design, ensuring its adaptability to various courses. The dashboard, presented in a tabular format, offers an overview of datasets, with each dataset row containing essential metadata such as the course name, activity type, year, semester, response count, and an accessible dropdown menu. The dropdown menu, tailored to user roles, offers a range of actions, including viewing, editing, annotating, exporting, and deleting datasets. Additionally, users have the option to import datasets from files or URLs. An independent web app is currently under development to collect student responses digitally. Importing datasets via URLs will allow us to import student responses directly from another server in the future.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+![Annotation Page - Selecting Label](https://oxiago.com/github/readme_images/Glechon/glechon-annotate.png)
 
-## Learning Laravel
+![Annotation Page - Selecting Context](https://oxiago.com/github/readme_images/Glechon/glechon-annotate-context.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Within the annotation interface, all responses from a dataset are displayed, each presented in an individual table complete with a unique identifier. Responses may consist of multiple sentences, each enumerated and displayed in separate rows. Each row features two multi-tag boxes---one for labels and another for selecting sentences providing context for the chosen label. In anticipation of numerous labels, both multi-tag boxes incorporate search functionality. Annotators can apply multiple labels to a sentence and specify context sentences per label. For convenience, each response includes a dedicated save button, allowing annotators to pause and easily track their progress. The input boxes are color-coded, with amber indicating *never annotated*, red for *unsaved*, and green for *successfully saved*.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Inviting users and login](https://oxiago.com/github/readme_images/Glechon/glechon-user-invite.png)
 
-## Laravel Sponsors
+To ensure security, the application is safeguarded behind a login page, with all communication encrypted. Only administrators have the ability to invite new users by providing their email addresses in the system. An automated email containing a unique code is sent to the provided address to prevent the creation of malicious accounts. After a user signs up, administrators have the authority to assign roles and customize permissions. User permissions can be tailored to include specific actions within the app. Furthermore, we have implemented role-based user permissions, simplifying the assignment of permissions to common user roles, such as annotators, for efficient and streamlined access control.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![User Access Control](https://oxiago.com/github/readme_images/Glechon/glechon-user-control.png)
 
-### Premium Partners
+Users with appropriate permissions have the capability to export any dataset in JSON format, a widely recognized and supported file format. The exported file encompasses dataset metadata, responses segmented into sentences, and annotations for each sentence from every annotator, all organized in a standardized format. The application also incorporates API support, providing users with tokens. This allows users to employ the API through programming scripts, enabling direct data retrieval from the server and seamless integration into their model training.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Publication
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Nazmul Kazi. Automated short-answer grading and misconception detection
+using large language models. Master's thesis, University of North Florida, Jacksonville, FL, December 2023. <a href="https://digitalcommons.unf.edu/etd/1234">https://digitalcommons.unf.edu/etd/1234</a>
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This software is licensed for non-commercial use only. Researchers and students may use it for academic purposes with prior permission and should share any improvements or modifications they make. The author retains the right to review and decide on the inclusion of any contributed changes. Commercial use, distribution, or sublicensing without explicit permission is strictly prohibited. Please check the LICENSE file for more details.

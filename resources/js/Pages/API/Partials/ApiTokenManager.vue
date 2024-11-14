@@ -106,7 +106,7 @@ const deleteApiToken = () => {
                         <div v-for="permission in availablePermissions" :key="permission">
                             <label class="tw-flex tw-items-center">
                                 <Checkbox v-model:checked="createApiTokenForm.permissions" :value="permission" />
-                                <span class="tw-ml-2 tw-text-sm tw-text-gray-600">{{ permission }}</span>
+                                <span class="tw-ml-2 tw-text-sm tw-capitalize tw-text-gray-600">{{ permission }}</span>
                             </label>
                         </div>
                     </div>

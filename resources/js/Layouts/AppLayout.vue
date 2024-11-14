@@ -50,12 +50,86 @@ const logout = () => {
                             <!-- Navigation Links -->
                             <div class="tw-hidden tw-space-x-8 sm:tw--my-px sm:tw-ml-10 sm:tw-flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                    Datasets
                                 </NavLink>
                             </div>
                         </div>
 
                         <div class="tw-hidden sm:tw-flex sm:tw-items-center sm:tw-ml-6">
+                            <!-- Dataset Dropdown -->
+                            <!-- 
+                            <div class="tw-ml-3 tw-relative">
+                                <Dropdown align="right" width="48">
+                                    <template #trigger>
+                                        <span class="tw-inline-flex tw-rounded-md">
+                                            <button type="button" class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-transparent tw-text-sm tw-leading-4 tw-font-medium tw-rounded-md tw-text-gray-500 tw-bg-white hover:tw-bg-gray-50 hover:tw-text-gray-700 focus:tw-outline-none focus:tw-bg-gray-50 active:tw-bg-gray-50 tw-transition">
+                                                Datasets
+
+                                                <svg 
+                                                    class="tw-ml-2 -tw-mr-0.5 tw-h-4 tw-w-4"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </span>
+                                    </template>
+
+                                    <template #content>
+                                        <DropdownLink :href="route('dataset.import')">
+                                            Import Dataset
+                                        </DropdownLink>
+
+                                        <DropdownLink :href="route('dataset.create')">
+                                            Create Dataset
+                                        </DropdownLink>
+
+                                        <div class="tw-border-t tw-border-gray-100" />
+                                        
+                                        <DropdownLink :href="route('dataset.import')">
+                                            Manage Dataset
+                                        </DropdownLink>
+                                    </template>
+                                </Dropdown>
+                            </div>
+                            -->
+                            
+                            
+                            <!-- Users Dropdown -->
+                            <div v-if="can('any-user')" class="tw-ml-3 tw-relative">
+                                <Dropdown align="right" width="48">
+                                    <template #trigger>
+                                        <span class="tw-inline-flex tw-rounded-md">
+                                            <button type="button" class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-transparent tw-text-sm tw-leading-4 tw-font-medium tw-rounded-md tw-text-gray-500 tw-bg-white hover:tw-bg-gray-50 hover:tw-text-gray-700 focus:tw-outline-none focus:tw-bg-gray-50 active:tw-bg-gray-50 tw-transition">
+                                                Users
+
+                                                <svg 
+                                                    class="tw-ml-2 tw--mr-0.5 tw-h-4 tw-w-4"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </span>
+                                    </template>
+
+                                    <template #content>
+                                        <!--  -->
+                                        <DropdownLink v-if="can('add-user')" :href="route('users.create')">
+                                            Add Users
+                                        </DropdownLink>
+                                        
+                                        <DropdownLink v-if="can('manage-user')" :href="route('users.index')">
+                                            Manage Users
+                                        </DropdownLink>
+                                    </template>
+                                </Dropdown>
+                            </div>
+                            
                             <div class="tw-ml-3 tw-relative">
                                 <!-- Teams Dropdown -->
                                 <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
@@ -209,7 +283,7 @@ const logout = () => {
                 <div :class="{'tw-block': showingNavigationDropdown, 'tw-hidden': ! showingNavigationDropdown}" class="sm:tw-hidden">
                     <div class="tw-pt-2 tw-pb-3 tw-space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                            Datasets
                         </ResponsiveNavLink>
                     </div>
 

@@ -9,14 +9,22 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
 const form = useForm({
+    firstname: '',
+    lastname: '',
     name: '',
     email: '',
+    invitation_code: '',
     password: '',
     password_confirmation: '',
     terms: false,
 });
 
 const submit = () => {
+    if(form.password !== form.password_confirmation) {
+        return form.setError('password_confirmation', 'Passwords do not match!');
+    }
+    
+    form.name = form.firstname + " " + form.lastname;
     form.post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
@@ -32,19 +40,35 @@ const submit = () => {
         </template>
 
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="tw-mt-1 tw-block tw-w-full"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
-                <InputError class="tw-mt-2" :message="form.errors.name" />
+            <div class="tw-flex tw-flex-row tw-gap-4">
+                <div>
+                    <InputLabel for="firstname" value="First Name" />
+                    <TextInput
+                        id="firstname"
+                        v-model="form.firstname"
+                        type="text"
+                        class="tw-mt-1 tw-block tw-w-full"
+                        maxlength="50"
+                        required
+                        autofocus
+                        autocomplete="given-name"
+                    />
+                </div>
+                <div>
+                    <InputLabel for="lastname" value="Last Name" />
+                    <TextInput
+                        id="lastname"
+                        v-model="form.lastname"
+                        type="text"
+                        class="tw-mt-1 tw-block tw-w-full"
+                        maxlength="48"
+                        required
+                        autofocus
+                        autocomplete="family-name"
+                    />
+                </div>
             </div>
+            <InputError class="tw-mt-2" :message="form.errors.name" />
 
             <div class="tw-mt-4">
                 <InputLabel for="email" value="Email" />
@@ -52,10 +76,26 @@ const submit = () => {
                     id="email"
                     v-model="form.email"
                     type="email"
+                    maxlength="100"
                     class="tw-mt-1 tw-block tw-w-full"
                     required
+                    autocomplete="email"
                 />
                 <InputError class="tw-mt-2" :message="form.errors.email" />
+            </div>
+            
+            <div class="tw-mt-4">
+                <InputLabel for="invitation_code" value="Invitation Code" />
+                <TextInput
+                    id="invitation_code"
+                    v-model="form.invitation_code"
+                    type="text"
+                    minlength="16"
+                    maxlength="16"
+                    class="tw-mt-1 tw-block tw-w-full tw-uppercase"
+                    required
+                />
+                <InputError class="tw-mt-2" :message="form.errors.invitation_code" />
             </div>
 
             <div class="tw-mt-4">
@@ -65,6 +105,7 @@ const submit = () => {
                     v-model="form.password"
                     type="password"
                     class="tw-mt-1 tw-block tw-w-full"
+                    minlength="10"
                     required
                     autocomplete="new-password"
                 />
@@ -78,6 +119,7 @@ const submit = () => {
                     v-model="form.password_confirmation"
                     type="password"
                     class="tw-mt-1 tw-block tw-w-full"
+                    minlength="10"
                     required
                     autocomplete="new-password"
                 />

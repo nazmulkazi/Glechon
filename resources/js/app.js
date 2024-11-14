@@ -1,6 +1,12 @@
 import './bootstrap';
 import '../css/app.css';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
+// import '../css/bootstrap.min.css';
+// import './bootstrap.bundle.min.js'
+
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
@@ -13,10 +19,17 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
     setup({ el, app, props, plugin }) {
-        return createApp({ render: () => h(app, props) })
+        const vueApp = createApp({ render: () => h(app, props) })
             .use(plugin)
-            .use(ZiggyVue, Ziggy)
-            .mount(el);
+            .use(ZiggyVue, Ziggy);
+        
+        vueApp.config.globalProperties.can = function(ability) {
+            const user = this.$page.props.user;
+            const [action, domain] = ability.split('-');
+            return user.role === 'admin' || (action === 'any' && user.permissions[domain]?.length > 0) || user.permissions[domain]?.includes(action);
+        };
+        
+        return vueApp.mount(el);
     },
 });
 
