@@ -138,7 +138,7 @@ class DatasetController extends Controller
                 $dataset->year = $data->year;
                 $dataset->semester = $data->semester;
                 $dataset->name = $data->name ?? NULL;
-                $dataset->num_responses = count($data->responses);
+                $dataset->num_responses = $data->num_responses ?? count((array) $data->responses);
                 $labels = $this->validateAndFormatLabels($data->labels);
                 if (is_string($labels)) {
                     throw new \Exception($labels);
@@ -146,15 +146,27 @@ class DatasetController extends Controller
                     $dataset->labels = $labels;
                 }
                 $dataset->save();
-
-                foreach ($data->responses as $res) {
-                    foreach ($res->text as $index => $sent) {
+                
+                foreach ($data->responses as $response_id => $sentences){
+                    foreach ($sentences as $index => $sentence) {
                         $response = new Response();
                         $response->dataset_id = $dataset->id;
-                        $response->response_id = $res->id;
+                        $response->response_id = $response_id;
                         $response->sentence_index = $index;
-                        $response->sentence = $sent;
+                        $response->sentence = $sentence;
                         $response->save();
+                    }
+                }
+                
+                foreach ($data->annotations as $response_id => $response_annotations) {
+                    foreach ($response_annotations as $annotator_id => $annotator) {
+                        $annotation = new Annotation();
+                        $annotation->dataset_id = $dataset->id;
+                        $annotation->response_id = $response_id;
+                        $annotation->annotator_id = $annotator_id;
+                        $annotation->labels = (object) $annotator->labels;
+                        $annotation->context_sentence_indices = (object) $annotator->context;
+                        $annotation->save();
                     }
                 }
 
