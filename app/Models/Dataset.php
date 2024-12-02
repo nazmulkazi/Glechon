@@ -53,7 +53,7 @@ class Dataset extends Model
     
     /**
      * Returns annotations of the authenticated user.
-     * if `annotator_id` is given, returns annotations of the corresponind annotator.
+     * if `annotator_id` is given, returns annotations of the corresponding annotator.
      * if `annotator_id` is negative, returns annotations of all annotators.
      */
     public function annotations($annotator_id = null)

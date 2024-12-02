@@ -199,10 +199,10 @@ class DatasetController extends Controller
         $annotate = \Route::currentRouteName() == 'dataset.annotate';
         
         $responses = $dataset->responses()
-            ->select('response_id', 'sentence')
+            ->select('response_id', 'sentence_index', 'sentence')
             ->get()
             ->groupBy('response_id')
-            ->map(fn($group) => $group->pluck('sentence')->toArray())
+            ->map(fn ($group) => $group->sortBy('sentence_index')->pluck('sentence')->toArray())
             ->toArray();
         $annotator_id = !$annotate && $request->has('annotator_id') && Auth::user()->role === 'admin' ? intval($request->input('annotator_id')) : Auth::id();
         $annotations = $dataset->annotations($annotator_id)
@@ -384,9 +384,9 @@ class DatasetController extends Controller
          * num_res_mc     : number of responses with misconception
          */
         
-        // retrive information from the database, calculate and returns statistics for a given dataset
+        // retrieve information from the database, calculate and returns statistics for a given dataset
         
-        // retrive and returned cached statistics, if a cache exists and there is no new annotation
+        // retrieve and returned cached statistics, if a cache exists and there is no new annotation
         $latest_annotation_timestamp = DB::table('annotations')
             ->where('dataset_id', '=', $dataset->id)
             ->max('updated_at');
