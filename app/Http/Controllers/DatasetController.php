@@ -313,12 +313,58 @@ class DatasetController extends Controller
     /**
      * Export the specified dataset.
      *
-     * @param  int  $dataset_id
+     * @param  \App\Models\Dataset  $dataset
      * @return \Illuminate\Http\Response
      */
-    public function export(int $dataset_id)
+    public function export(Dataset $dataset)
     {
-        return Inertia::render('Dataset/Import');
+        // Gather and format information to export
+        $data = [
+            'course' => $dataset->course,
+            'activity' => $dataset->activity,
+            'year' => $dataset->year,
+            'semester' => $dataset->semester,
+            'name' => $dataset->name,
+            'num_responses' => $dataset->num_responses,
+            'labels' => $dataset->labels,
+            'responses' => $dataset->responses()
+                ->get()
+                ->groupBy('response_id')
+                ->map(function ($group) {
+                    return $group
+                        ->sortBy('sentence_index')
+                        ->pluck('sentence');
+                }),
+            'annotator_ids' => $dataset->annotations()
+                ->select('annotator_id')
+                ->distinct()
+                ->pluck('annotator_id')
+                ->toArray(),
+            'annotations' => $dataset->annotations()
+                ->get()
+                ->groupBy('response_id')
+                ->map(function ($responseAnnotations) {
+                    return $responseAnnotations
+                        ->keyBy('annotator_id')
+                        ->map(function ($annotator) {
+                            return [
+                                'labels' => $annotator->labels,
+                                'context' => $annotator->context_sentence_indices
+                            ];
+                    });
+                })
+        ];
+        
+        return response()->stream(
+            function () use ($data) {
+                echo json_encode($data);
+            },
+            200,
+            [
+                'Content-Type' => 'application/json',
+                'Content-Disposition' => 'attachment; filename="dataset_' . $dataset->id . '.json"'
+            ]
+        );
     }
     
     /**

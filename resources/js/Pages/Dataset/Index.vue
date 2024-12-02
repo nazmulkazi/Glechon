@@ -151,7 +151,7 @@ const removeUser = () => {
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink v-for="(action_title, action) in props.actions" :href="route('dataset.' + action, dataset.id)">
+                                        <DropdownLink v-for="(action_title, action) in props.actions" as="a" :href="route('dataset.' + action, dataset.id)" :download="action == 'export'">
                                             {{ action_title }}
                                         </DropdownLink>
                                     </template>

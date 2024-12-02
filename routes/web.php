@@ -81,7 +81,7 @@ Route::middleware([
         DatasetController::class, 'statistics'
     ])->name('dataset.statistics');
     
-    Route::get('/dataset/export/{id}', [
+    Route::get('/dataset/export/{dataset}', [
         DatasetController::class, 'export'
     ])->name('dataset.export');
     
